@@ -9,7 +9,7 @@ https://register.ulin-app.xyz/
 | Find Participant By Id  | /v1/participant/:id_participant | id_participant   | GET     |
 
 
-| FirstName     | LastName      | City   
+| Action        | Url           | Parameter   |
 | ------------- | ------------- | --------    |
 | `John`        | Test1         | `NewYork`   |
 | `Bob`         | Test2         | `Toronto`   |
