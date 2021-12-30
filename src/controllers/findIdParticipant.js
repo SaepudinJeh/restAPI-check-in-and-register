@@ -12,7 +12,7 @@ const findIdParticipant = async (req, res, next) => {
       return next(createError.NotFound())
     }
 
-    const { data } = await callAPi('http://192.168.18.67:8001/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_id,ticket_id.ticket_type&filter[customer_id]=9')
+    const { data } = await callAPi('http://api-ticket.arisukarno.xyz:8055/items/order?fields=customer_id.customer_id,customer_id.customer_name,ticket_id.ticket_id,ticket_id.ticket_type&filter[customer_id]=9')
 
     const ticketId = data[0].ticket_id.ticket_type
 

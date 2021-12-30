@@ -1,7 +1,5 @@
 const { MongoClient } = require('mongodb')
 
-console.log(process.env.MONGO_URI);
-
 const dbConnect = (coll, cb) => {
   MongoClient.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
