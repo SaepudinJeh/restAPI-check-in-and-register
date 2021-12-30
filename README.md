@@ -11,5 +11,5 @@ https://register.ulin-app.xyz/
 
 | Action        | Url           | Parameter   | Parameter        | Method           | return   | Result   |
 | ------------- | ------------- | --------    | ---------------- | ---------------- | -------- | -------- |
-| Find Participant By Id  | Test1         | `NewYork`   |
+| Find Participant By Id  | /v1/participant/:id_participant         | `GET`   | Detail Participant | https://register.ulin-app.xyz/v1/participant/{id_participant} |
 | `Bob`         | Test2         | `Toronto`   |
