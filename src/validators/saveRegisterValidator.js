@@ -5,6 +5,7 @@ const checkSaveRegister = Joi.object({
   id_seminar: Joi.string().required(),
   validate_on: Joi.date().default(''),
   validate_by: Joi.string().default(''),
+  ticket_type: Joi.string().required(),
   create_at: Joi.date().default(new Date())
 })
 
