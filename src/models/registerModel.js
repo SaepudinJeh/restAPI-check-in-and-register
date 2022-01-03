@@ -24,6 +24,20 @@ class Register {
     })
   }
 
+  static deleteAll() {
+    return new Promise((resolve, reject) => {
+      try {
+        dbConnect('participant', async (db) => {
+          const result = await db.deleteMany({})
+
+          resolve(result)
+        })
+      } catch (error) {
+        return reject(error)
+      }
+
+    })
+  }
 
   save() {
     return new Promise((resolve, reject) => {
