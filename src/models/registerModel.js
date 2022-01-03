@@ -93,11 +93,16 @@ class Register {
     })
   }
 
-  static checkParticipant(id_participant) {
+  static checkParticipant(id_participant, id_seminar) {
     return new Promise((resolve, reject) => {
       try {
         dbConnect('participant', async (db) => {
-          const result = await db.findOne({ id_participant })
+          const result = await db.findOne({
+            $and: [
+              {id_participant: id_participant},
+              {id_seminar: id_seminar}
+            ]
+          })
           resolve(result)
         })
       } catch (error) {
