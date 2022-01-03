@@ -9,6 +9,21 @@ class Register {
     this._dataPayload = { ...dataPayload }
   }
 
+  static findAll() {
+    return new Promise((resolve, reject) => {
+      try {
+        dbConnect('participant', async (db) => {
+          const result = await db.find({}).toArray()
+
+          resolve(result)
+        })
+      } catch (error) {
+        return reject(error)
+      }
+
+    })
+  }
+
 
   save() {
     return new Promise((resolve, reject) => {
