@@ -11,7 +11,7 @@ router
   .delete('/v1/participants', removeAll)
   .get('/v1/participant/:id_participant/seminar/:id_seminar', findIdAndSeminarParticipant)
   .post('/v1/register', saveParticipantRegister)
-  .patch('/v1/check/:id_participant', updateCheckIn)
+  .patch('/v1/participant/:id_participant/seminar/:id_seminar', updateCheckIn)
 
 
 module.exports = router

@@ -73,12 +73,12 @@ class Register {
     })
   }
 
-  static update(id_participant) {
+  static update(id) {
     return new Promise((resolve, reject) => {
       try {
         dbConnect('participant', async (db) => {
           const result = await db.updateOne(
-            { id_participant },
+            { _id:  ObjectId(id)},
             { $set: { 
               validate_on: new Date(),
               validate_by: 'admin'
