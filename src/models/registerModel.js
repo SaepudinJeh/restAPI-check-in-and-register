@@ -2,7 +2,7 @@ const ObjectId = require('mongodb').ObjectId
 const createError = require('http-errors')
 
 const { dbConnect } = require('../helpers')
-const { checkInUpdateValidator, checkSaveRegister } = require('../validators')
+const { checkSaveRegister } = require('../validators')
 
 class Register {
   constructor(dataPayload) {
@@ -107,6 +107,20 @@ class Register {
         })
       } catch (error) {
         console.info(error)
+        return reject(error)
+      }
+    })
+  }
+
+  static findAllParticipantById(id_participant) {
+    return new Promise((resolve, reject) => {
+      try {
+        dbConnect('participant', async (db) => {
+          const participants = await db.find({ id_participant }).toArray()
+
+          resolve(participants)
+        })
+      } catch (error) {
         return reject(error)
       }
     })
