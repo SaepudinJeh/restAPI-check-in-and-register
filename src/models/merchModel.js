@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb')
 const { dbConnect } = require('../helpers')
 
 class Merch {
@@ -5,11 +6,11 @@ class Merch {
     this.merchData = { ...merchData}
   }
 
-  static findByIdParticipant(id_participant) {
+  static findByIdMerch(id) {
     return new Promise((resolve, reject) => {
       try {
         dbConnect('merch', async (db) => {
-          const merch = await db.findOne({id_participant})
+          const merch = await db.findOne({_id: ObjectId(id)})
 
           resolve(merch)
         })

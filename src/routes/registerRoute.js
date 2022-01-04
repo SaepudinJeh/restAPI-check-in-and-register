@@ -7,13 +7,15 @@ const {
   findAll,
   removeAll,
   saveMerch,
-  findParticipantById
+  findParticipantById,
+  findMerchById
 } = require('../controllers')
 
 router
   .get('/', (req, res, next) => {
     res.send('wwkwkwkw')
   })
+  .get('/v1/merch/:id_merch', findMerchById)
   .get('/v1/participant/:id_participant', findParticipantById)
   .post('/v1/merch', saveMerch)
   .get('/v1/participants', findAll)
