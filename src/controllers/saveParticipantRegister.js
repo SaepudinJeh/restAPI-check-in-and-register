@@ -1,11 +1,12 @@
-const { Register, Merch } = require('../models')
+const { Register } = require('../models')
 
 const saveParticipantRegister = async (req, res, next) => {
   try {
     const register = new Register(req.body)
 
+    console.log(register)
+
     await register.save()
-    await Merch.save(req.body.id_participant)
 
     res.status(200).json({
       status: 200,

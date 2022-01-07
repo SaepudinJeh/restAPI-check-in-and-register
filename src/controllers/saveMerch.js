@@ -2,9 +2,9 @@ const { Merch } = require('../models')
 
 const saveParticipantRegister = async (req, res, next) => {
   try {
-    // const register = new Register(req.body)
+    const payload = new Merch(req.body)
 
-    const result = await Merch.save()
+    const result = await payload.save()
 
     res.status(200).json({
       status: 200,

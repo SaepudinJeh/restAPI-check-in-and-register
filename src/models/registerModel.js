@@ -53,7 +53,8 @@ class Register {
           id_seminar,
           validate_on,
           validate_by,
-          create_at
+          create_at,
+          ticket_type
         } = validation.value
 
         dbConnect('participant', async (db) => {
@@ -62,7 +63,8 @@ class Register {
             id_seminar,
             validate_on,
             validate_by,
-            create_at
+            create_at,
+            ticket_type
           })
           resolve(result)
         })
