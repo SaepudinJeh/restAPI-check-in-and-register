@@ -79,10 +79,13 @@ class Register {
     return new Promise((resolve, reject) => {
       try {
         dbConnect('participant', async (db) => {
+          const timeElapsed = Date.now()
+          const today = new Date(timeElapsed)
+
           const result = await db.updateOne(
             { _id:  ObjectId(id)},
             { $set: { 
-              validate_on: Date.now(),
+              validate_on: today,
               validate_by: 'admin'
             } }
           )
