@@ -6,6 +6,7 @@ const removeAll = require('./removeAllParticipants')
 const saveMerch = require('./saveMerch')
 const findParticipantById = require('./findAllParticipantById')
 const updateMerchByIdParticipant = require('./updateMerchByIdParticipant')
+const findMerchByIdParticipant = require('./findMerchByIdParticipant')
 
 module.exports = {
   saveParticipantRegister,
@@ -15,5 +16,6 @@ module.exports = {
   removeAll,
   saveMerch,
   findParticipantById,
-  updateMerchByIdParticipant
+  updateMerchByIdParticipant,
+  findMerchByIdParticipant
 }

@@ -8,7 +8,8 @@ const {
   removeAll,
   saveMerch,
   findParticipantById,
-  updateMerchByIdParticipant
+  updateMerchByIdParticipant,
+  findMerchByIdParticipant
 } = require('../controllers')
 
 router
@@ -18,9 +19,10 @@ router
   .get('/v1/participant/:id_participant', findParticipantById)
   .get('/v1/participants', findAll)
   .get('/v1/participant/:id_participant/seminar/:id_seminar', findIdAndSeminarParticipant)
+  .get('/v1/merch/:id_participant', findMerchByIdParticipant)
   .post('/v1/merch', saveMerch)
   .post('/v1/register', saveParticipantRegister)
-  .patch('/v1/merch/:id_participant/seminar/:id_seminar', updateMerchByIdParticipant)
+  .patch('/v1/merch/:id_participant', updateMerchByIdParticipant)
   .patch('/v1/participant/:id_participant/seminar/:id_seminar', updateCheckIn)
   .delete('/v1/participants', removeAll)
 

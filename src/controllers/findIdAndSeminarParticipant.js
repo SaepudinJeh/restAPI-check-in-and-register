@@ -1,22 +1,23 @@
 const createError = require('http-errors')
-const { Register } = require('../models')
+const { Register, Merch } = require('../models')
 
 const findIdParticipant = async (req, res, next) => {
   try {
     const { id_participant, id_seminar } = req.params
-
-    console.table([id_participant, id_seminar]);
     
     const participant = await Register.checkParticipant(id_participant, id_seminar)
 
     if (!participant) {
-      return next(createError.NotFound())
+      return next(createError.BadRequest('Cant result Participant!'))
     }
+
+    const { merch } = await Merch.findMerchByTicketType(participant.ticket_type)
 
     res.status(200).json({
       status: 200,
       data: {
-        participant
+        participant,
+        merch
       }
     })
   } catch (error) {

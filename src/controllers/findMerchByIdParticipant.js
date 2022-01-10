@@ -1,22 +1,23 @@
+const createError = require('http-errors')
 const { Merch } = require('../models')
 
-const updateMerchByIdParticipant = async (req, res, next) => {
+const findMerchByIdParticipant = async (req, res, next) => {
   try {
     const { id_participant } = req.params
 
     const merch = await Merch.findMerchByIdParticipant(id_participant)
 
-    console.log(merch);
-
-    const updateMerch = await Merch.updateGivenMerch(merch._id)
+    if (!merch) {
+      next(createError.BadRequest('Merch empty!'))
+    }
 
     res.status(200).json({
       status: 200,
-      updateMerch
+      merch
     })
   } catch (error) {
     next(error)
   }
 }
 
-module.exports = updateMerchByIdParticipant
+module.exports = findMerchByIdParticipant

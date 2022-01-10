@@ -6,14 +6,16 @@ class Merch {
     this.merchData = { ...merchData}
   }
 
-  static updateGivenMerch(id) {
+  static updateGivenMerch(id, merch) {
     return new Promise((resolve, reject) => {
       try {
-        dbConnect('merch', async (db) => {
+        dbConnect('merch-participant', async (db) => {
           const merch = await db.updateOne(
             {_id: ObjectId(id)},
             { $set : 
-              { given_on: new Date() }
+              { given_on: new Date(),
+                merch 
+              },
             }  
           )
 
@@ -28,7 +30,7 @@ class Merch {
   static findMerchByIdParticipant(id_participant) {
     return new Promise((resolve, reject) => {
       try {
-        dbConnect('merch', async (db) => {
+        dbConnect('merch-participant', async (db) => {
           const merch = await db.findOne({ id_participant })
 
           resolve(merch)
@@ -39,18 +41,37 @@ class Merch {
     })
   }
 
+  static findMerchByTicketType(ticket_type) {
+    return new Promise((resolve, reject) => {
+      try {
+        dbConnect('merch', async (db) => {
+          const merch = await db.findOne(
+            { ticket_type },
+            { projection: { _id: 0, merch: 1 } },
+          )
+
+          resolve(merch)
+        })
+      } catch (error) {
+        console.log(error)
+        return reject(error)
+      }
+    })
+  }
+
   save() {
     return new Promise((resolve, reject) => {
       try {
-        const { ticket_type, merch } = this.merchData
+        
+        const { ticket_type, merchandise } = this.merchData
 
         dbConnect('merch', async (db) => {
-          const merchandise = await db.insertOne({
+          const merch = await db.insertOne({
             ticket_type,
-            merch
+            merchandise
           })
 
-          resolve(merchandise)
+          resolve(merch)
         })
       } catch (error) {
         console.log(error)
