@@ -13,7 +13,7 @@ const findMerchByIdParticipant = async (req, res, next) => {
 
     res.status(200).json({
       status: 200,
-      merch
+      data: merch
     })
   } catch (error) {
     next(error)

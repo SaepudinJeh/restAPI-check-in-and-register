@@ -6,7 +6,7 @@ const checkSaveRegister = Joi.object({
   validate_on: Joi.date().default(''),
   validate_by: Joi.string().default(''),
   ticket_type: Joi.string().required(),
-  create_at: Joi.date().default(new Date())
+  create_at: Joi.date().default(Date.now())
 })
 
 module.exports = checkSaveRegister

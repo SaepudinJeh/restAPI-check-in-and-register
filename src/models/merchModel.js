@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb')
 const { dbConnect } = require('../helpers')
 
 class Merch {
@@ -6,15 +5,17 @@ class Merch {
     this.merchData = { ...merchData}
   }
 
-  static updateGivenMerch(id, merch) {
+  updateGivenMerch() {
     return new Promise((resolve, reject) => {
       try {
+        const { id_participant, merchandise } = this.merchData
+
         dbConnect('merch-participant', async (db) => {
           const merch = await db.updateOne(
-            {_id: ObjectId(id)},
+            { id_participant },
             { $set : 
-              { given_on: new Date(),
-                merch 
+              { given_on: Date.now(),
+                merchandise
               },
             }  
           )
@@ -68,6 +69,27 @@ class Merch {
         dbConnect('merch', async (db) => {
           const merch = await db.insertOne({
             ticket_type,
+            merchandise
+          })
+
+          resolve(merch)
+        })
+      } catch (error) {
+        console.log(error)
+        return reject(error)
+      }
+    })
+  }
+
+  saveMerchByIdParticipant() {
+    return new Promise((resolve, reject) => {
+      try {
+        
+        const { id_participant, merchandise } = this.merchData
+
+        dbConnect('merch-participant', async (db) => {
+          const merch = await db.insertOne({
+            id_participant,
             merchandise
           })
 

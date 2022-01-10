@@ -82,7 +82,7 @@ class Register {
           const result = await db.updateOne(
             { _id:  ObjectId(id)},
             { $set: { 
-              validate_on: new Date(),
+              validate_on: Date.now(),
               validate_by: 'admin'
             } }
           )
