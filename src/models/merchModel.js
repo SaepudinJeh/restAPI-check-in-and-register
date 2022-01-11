@@ -48,7 +48,7 @@ class Merch {
         dbConnect('merch', async (db) => {
           const merch = await db.findOne(
             { ticket_type },
-            { projection: { _id: 0, merch: 1 } },
+            { projection: { _id: 0, merchandise: 1 } },
           )
 
           resolve(merch)
