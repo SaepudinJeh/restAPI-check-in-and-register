@@ -13,6 +13,15 @@ const findIdParticipant = async (req, res, next) => {
 
     const merchandise = await Merch.findMerchByTicketType(participant.ticket_type)
 
+    if(!merchandise) {
+      res.status(200).json({
+        status: 200,
+        data: {
+          participant
+        }
+      })
+    }
+
     const merch = merchandise.merch
 
     res.status(200).json({
