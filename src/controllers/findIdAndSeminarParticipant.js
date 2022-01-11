@@ -11,7 +11,9 @@ const findIdParticipant = async (req, res, next) => {
       return next(createError.BadRequest('Cant result Participant!'))
     }
 
-    const { merch } = await Merch.findMerchByTicketType(participant.ticket_type)
+    const merchandise = await Merch.findMerchByTicketType(participant.ticket_type)
+
+    const merch = merchandise.merch
 
     res.status(200).json({
       status: 200,
