@@ -7,7 +7,7 @@ const findParticipantById = async (req, res, next) => {
 
     res.status(200).json({
       status: 200,
-      participants
+      data: participants
     })
   } catch (error) {
     next(error)
